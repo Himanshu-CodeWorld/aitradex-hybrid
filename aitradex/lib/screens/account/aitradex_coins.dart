@@ -1064,7 +1064,9 @@ class _AiTradeXCoinsScreenState extends State<AiTradeXCoinsScreen> {
       MaterialPageRoute<void>(
         builder: (_) => AiTradeXCoinsHistoryScreen(
           coinBalance: _coinBalance,
-          transactions: List<CoinTransaction>.unmodifiable(_transactions),
+          // Share the live list so a pull-to-refresh on the history screen
+          // reflects the latest transactions loaded by _refreshCoins.
+          transactions: _transactions,
           onRefresh: _refreshCoins,
         ),
       ),
