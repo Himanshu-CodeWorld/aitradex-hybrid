@@ -140,7 +140,7 @@ class _AnimatedLogoBackgroundState
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(.08),
+                            color: Colors.black.withValues(alpha: .08),
                             blurRadius: 18,
                             offset: const Offset(0, 8),
                           ),
@@ -175,7 +175,7 @@ class _AnimatedLogoBackgroundState
                         end: Alignment.topCenter,
                         colors: [
                           Colors.white,
-                          Colors.white.withOpacity(.55),
+                          Colors.white.withValues(alpha: .55),
                           Colors.transparent,
                         ],
                         stops: const [

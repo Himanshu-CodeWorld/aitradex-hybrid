@@ -86,7 +86,7 @@ class _FreeCommissionWidgetState
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color(0xff23C98D).withOpacity(.05),
+                    color: const Color(0xff23C98D).withValues(alpha: .05),
                   ),
                 ),
               ),
@@ -97,7 +97,7 @@ class _FreeCommissionWidgetState
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color(0xff23C98D).withOpacity(.03),
+                    color: const Color(0xff23C98D).withValues(alpha: .03),
                   ),
                 ),
               ),
@@ -196,12 +196,12 @@ class _FreeCommissionWidgetState
 
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff23C98D).withOpacity(.40),
+            color: const Color(0xff23C98D).withValues(alpha: .40),
             blurRadius: 25,
             spreadRadius: 3,
           ),
           BoxShadow(
-            color: Colors.white.withOpacity(.25),
+            color: Colors.white.withValues(alpha: .25),
             blurRadius: 15,
             spreadRadius: 2,
           ),
@@ -272,7 +272,7 @@ class _FreeCommissionWidgetState
               width: 180,
               height: 20,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.05),
+                color: Colors.black.withValues(alpha: .05),
                 borderRadius: BorderRadius.circular(50),
               ),
             ),
@@ -295,7 +295,7 @@ class _FreeCommissionWidgetState
         boxShadow: [
 
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 20,
           ),
         ],
@@ -338,7 +338,7 @@ class _FreeCommissionWidgetState
           boxShadow: [
 
             BoxShadow(
-              color: Colors.black.withOpacity(.08),
+              color: Colors.black.withValues(alpha: .08),
               blurRadius: 15,
             ),
           ],
@@ -366,7 +366,7 @@ class _FreeCommissionWidgetState
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff23C98D).withOpacity(.30),
+            color: const Color(0xff23C98D).withValues(alpha: .30),
             blurRadius: 18,
           ),
         ],
@@ -580,7 +580,7 @@ class _FreeCommissionWidgetState
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 18,
           ),
         ],
@@ -634,7 +634,7 @@ class _FreeCommissionWidgetState
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff23C98D).withOpacity(.35),
+            color: const Color(0xff23C98D).withValues(alpha: .35),
             blurRadius: 12,
           ),
         ],

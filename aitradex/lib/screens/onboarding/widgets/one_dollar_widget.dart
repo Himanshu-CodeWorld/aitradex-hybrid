@@ -107,7 +107,7 @@ class _OneDollarWidgetState extends State<OneDollarWidget>
 
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xff23D18B).withOpacity(.35),
+                        color: const Color(0xff23D18B).withValues(alpha: .35),
                         blurRadius: 35,
                         spreadRadius: 6,
                       ),
@@ -288,7 +288,7 @@ class _OneDollarWidgetState extends State<OneDollarWidget>
                   height: 20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Colors.black.withOpacity(.05),
+                    color: Colors.black.withValues(alpha: .05),
                   ),
                 ),
               ),
@@ -338,7 +338,7 @@ class _OneDollarWidgetState extends State<OneDollarWidget>
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: const Color(0xff22C58B)
-                            .withOpacity(.08),
+                            .withValues(alpha: .08),
                       ),
                     ),
                   ),
@@ -354,7 +354,7 @@ class _OneDollarWidgetState extends State<OneDollarWidget>
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: const Color(0xff22C58B)
-                            .withOpacity(.04),
+                            .withValues(alpha: .04),
                       ),
                     ),
                   ),
@@ -388,7 +388,7 @@ class _OneDollarWidgetState extends State<OneDollarWidget>
 
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: const Color(0xff23D18B).withOpacity(.15),
+          color: const Color(0xff23D18B).withValues(alpha: .15),
         ),
 
         child: Center(
@@ -426,7 +426,7 @@ class _OneDollarWidgetState extends State<OneDollarWidget>
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 18,
           ),
         ],
@@ -448,7 +448,7 @@ class _OneDollarWidgetState extends State<OneDollarWidget>
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 18,
           ),
         ],
@@ -501,7 +501,7 @@ class _OneDollarWidgetState extends State<OneDollarWidget>
         color: const Color(0xff22C58B),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff22C58B).withOpacity(.35),
+            color: const Color(0xff22C58B).withValues(alpha: .35),
             blurRadius: 8,
           ),
         ],

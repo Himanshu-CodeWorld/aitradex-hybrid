@@ -1,398 +1,349 @@
+import 'dart:convert';
+
 class SignupModel {
-  // ==========================================================
-  // Personal Details
-  // ==========================================================
+  // ============================================================
+  // BASIC INFORMATION
+  // ============================================================
 
   String fullName;
-  String email = "";
-  String phone = "";
-  String countryCode = "";
+  String email;
+  String phone;
+  String username;
+
+  // ============================================================
+  // PHONE / COUNTRY
+  // ============================================================
+
+  String countryCode;
+
+  // ============================================================
+  // PROFILE
+  // ============================================================
+
   String profileImage;
-  String gender;
-  String dob;
-  String birthPlace;
 
-  // ==========================================================
-  // Investment
-  // ==========================================================
+  // ============================================================
+  // REFERRAL
+  // ============================================================
 
-  String investmentGoal;
-  String investmentExperience;
+  String referralCode;
+  String referredBy;
 
-  // ==========================================================
-  // Employment
-  // ==========================================================
-
-  String occupation;
-  String monthlyIncome;
-  String companyName;
-  String jobTitle;
-
-  // ==========================================================
-  // KYC
-  // ==========================================================
-
-  String panNumber;
-  String panImageUrl;
-
-  String aadhaarNumber;
-  String aadhaarFrontUrl;
-  String aadhaarBackUrl;
-
-  String selfieUrl;
-
-  // ==========================================================
-  // Address
-  // ==========================================================
-
-  String address;
-  String city;
-  String state;
-  String pincode;
-
-  // ==========================================================
-  // Bank
-  // ==========================================================
-
-  String bankName;
-  String accountHolderName;
-  String accountNumber;
-  String ifscCode;
-  String accountType;
-
-  // ==========================================================
-  // Nominee
-  // ==========================================================
-
-  String nomineeName;
-  String nomineeDob;
-  String nomineeRelation;
-
-  // ==========================================================
-  // Digital Signature
-  // ==========================================================
-
-  String signatureUrl;
-
-  // ==========================================================
-  // Security
-  // ==========================================================
-
-  String mpin;
-
-  // ==========================================================
-  // Verification
-  // ==========================================================
+  // ============================================================
+  // VERIFICATION STATUS
+  // ============================================================
 
   bool emailVerified;
   bool phoneVerified;
-  bool kycVerified;
 
-  // ==========================================================
-  // Account
-  // ==========================================================
-
-  String accountStatus;
-
-  // ==========================================================
-  // Device
-  // ==========================================================
-
-  String fcmToken;
-  String deviceType;
-
-  // ==========================================================
-  // Referral
-  // ==========================================================
-
-  String referralCode;
-  String? referredBy;
+  // ============================================================
+  // CONSTRUCTOR
+  // ============================================================
 
   SignupModel({
     this.fullName = '',
     this.email = '',
     this.phone = '',
+    this.username = '',
     this.countryCode = '+91',
     this.profileImage = '',
-    this.gender = '',
-    this.dob = '',
-    this.birthPlace = '',
-    this.investmentGoal = '',
-    this.investmentExperience = '',
-    this.occupation = '',
-    this.monthlyIncome = '',
-    this.companyName = '',
-    this.jobTitle = '',
-    this.panNumber = '',
-    this.panImageUrl = '',
-    this.aadhaarNumber = '',
-    this.aadhaarFrontUrl = '',
-    this.aadhaarBackUrl = '',
-    this.selfieUrl = '',
-    this.address = '',
-    this.city = '',
-    this.state = '',
-    this.pincode = '',
-    this.bankName = '',
-    this.accountHolderName = '',
-    this.accountNumber = '',
-
-    this.ifscCode = '',
-    this.accountType = "Savings",
-    this.nomineeName = '',
-    this.nomineeDob = '',
-    this.nomineeRelation = '',
-    this.signatureUrl = '',
-    this.mpin = '',
-
+    this.referralCode = '',
+    this.referredBy = '',
     this.emailVerified = false,
     this.phoneVerified = false,
-    this.kycVerified = false,
-
-    this.accountStatus = "Pending",
-
-    this.fcmToken = "",
-    this.deviceType = "",
-
-    this.referralCode = "",
-    this.referredBy,
   });
 
-  // ==========================================================
-  // TO JSON
-  // ==========================================================
-
-  Map<String, dynamic> toJson() {
-    return {
-      'fullName': fullName,
-      'email': email,
-      'phone' : phone,
-      'countryCode' : countryCode,
-      "profileImage": profileImage,
-      'gender': gender,
-      'dob': dob,
-      'birthPlace': birthPlace,
-
-      'investmentGoal': investmentGoal,
-      'investmentExperience': investmentExperience,
-
-      'occupation': occupation,
-      'monthlyIncome': monthlyIncome,
-      'companyName': companyName,
-      'jobTitle': jobTitle,
-
-      'panNumber': panNumber,
-      'panImageUrl': panImageUrl,
-
-      'aadhaarNumber': aadhaarNumber,
-      'aadhaarFrontUrl': aadhaarFrontUrl,
-      'aadhaarBackUrl': aadhaarBackUrl,
-
-      'selfieUrl': selfieUrl,
-
-      'address': address,
-      'city': city,
-      'state': state,
-      'pincode': pincode,
-
-      'bankName': bankName,
-      'accountHolderName': accountHolderName,
-      'accountNumber': accountNumber,
-      'ifscCode': ifscCode,
-      "accountType": accountType,
-
-      'nomineeName': nomineeName,
-      'nomineeDob': nomineeDob,
-      'nomineeRelation': nomineeRelation,
-
-      'signatureUrl': signatureUrl,
-
-      'mpin': mpin,
-
-      'emailVerified': emailVerified,
-      'phoneVerified': phoneVerified,
-      'kycVerified': kycVerified,
-
-      'accountStatus': accountStatus,
-
-      'fcmToken': fcmToken,
-      'deviceType': deviceType,
-
-      'referralCode': referralCode,
-      'referredBy': referredBy,
-    };
-  }
-
-  // ==========================================================
-  // FROM JSON
-  // ==========================================================
-
-  factory SignupModel.fromJson(Map<String, dynamic> json) {
-    return SignupModel(
-      fullName: json['fullName'] ?? '',
-      email: json['email'] ?? '',
-      phone: json['phone'] ?? '',
-      countryCode: json["countryCode"] ?? "+91",
-      profileImage: json["profileImage"] ?? '',
-      gender: json['gender'] ?? '',
-      dob: json['dob'] ?? '',
-      birthPlace: json['birthPlace'] ?? '',
-
-      investmentGoal: json['investmentGoal'] ?? '',
-      investmentExperience: json['investmentExperience'] ?? '',
-
-      occupation: json['occupation'] ?? '',
-      monthlyIncome: json['monthlyIncome'] ?? '',
-      companyName: json['companyName'] ?? '',
-      jobTitle: json['jobTitle'] ?? '',
-
-      panNumber: json['panNumber'] ?? '',
-      panImageUrl: json['panImageUrl'] ?? '',
-
-      aadhaarNumber: json['aadhaarNumber'] ?? '',
-      aadhaarFrontUrl: json['aadhaarFrontUrl'] ?? '',
-      aadhaarBackUrl: json['aadhaarBackUrl'] ?? '',
-
-      selfieUrl: json['selfieUrl'] ?? '',
-
-      address: json['address'] ?? '',
-      city: json['city'] ?? '',
-      state: json['state'] ?? '',
-      pincode: json['pincode'] ?? '',
-
-      bankName: json['bankName'] ?? '',
-      accountHolderName: json['accountHolderName'] ?? '',
-      accountNumber: json['accountNumber'] ?? '',
-
-      ifscCode: json['ifscCode'] ?? '',
-      accountType: json["accountType"] ?? "Savings",
-
-      nomineeName: json['nomineeName'] ?? '',
-      nomineeDob: json['nomineeDob'] ?? '',
-      nomineeRelation: json['nomineeRelation'] ?? '',
-
-
-      signatureUrl: json['signatureUrl'] ?? '',
-
-      mpin: json['mpin'] ?? '',
-
-      emailVerified: json['emailVerified'] ?? false,
-      phoneVerified: json['phoneVerified'] ?? false,
-      kycVerified: json['kycVerified'] ?? false,
-
-      accountStatus: json['accountStatus'] ?? "Pending",
-
-      fcmToken: json['fcmToken'] ?? "",
-      deviceType: json['deviceType'] ?? "",
-
-      referralCode: json['referralCode'] ?? "",
-      referredBy: json['referredBy'],
-    );
-  }
-
-  // ==========================================================
+  // ============================================================
   // COPY WITH
-  // ==========================================================
+  // ============================================================
 
   SignupModel copyWith({
     String? fullName,
     String? email,
     String? phone,
+    String? username,
     String? countryCode,
     String? profileImage,
-    String? gender,
-    String? dob,
-    String? birthPlace,
-    String? investmentGoal,
-    String? investmentExperience,
-    String? occupation,
-    String? monthlyIncome,
-    String? companyName,
-    String? jobTitle,
-    String? panNumber,
-    String? panImageUrl,
-    String? aadhaarNumber,
-    String? aadhaarFrontUrl,
-    String? aadhaarBackUrl,
-    String? selfieUrl,
-    String? address,
-    String? city,
-    String? state,
-    String? pincode,
-    String? bankName,
-    String? accountHolderName,
-    String? accountNumber,
-    String? ifscCode,
-    String? accountType,
-    String? nomineeName,
-    String? nomineeDob,
-    String? nomineeRelation,
-    String? signatureUrl,
-    String? mpin,
-
-    bool? emailVerified,
-    bool? phoneVerified,
-    bool? kycVerified,
-
-    String? accountStatus,
-
-    String? fcmToken,
-    String? deviceType,
-
     String? referralCode,
     String? referredBy,
+    bool? emailVerified,
+    bool? phoneVerified,
   }) {
     return SignupModel(
       fullName: fullName ?? this.fullName,
       email: email ?? this.email,
       phone: phone ?? this.phone,
+      username: username ?? this.username,
       countryCode: countryCode ?? this.countryCode,
       profileImage: profileImage ?? this.profileImage,
-      gender: gender ?? this.gender,
-      dob: dob ?? this.dob,
-      birthPlace: birthPlace ?? this.birthPlace,
-      investmentGoal: investmentGoal ?? this.investmentGoal,
-      investmentExperience:
-      investmentExperience ?? this.investmentExperience,
-      occupation: occupation ?? this.occupation,
-      monthlyIncome: monthlyIncome ?? this.monthlyIncome,
-      companyName: companyName ?? this.companyName,
-      jobTitle: jobTitle ?? this.jobTitle,
-      panNumber: panNumber ?? this.panNumber,
-      panImageUrl: panImageUrl ?? this.panImageUrl,
-      aadhaarNumber: aadhaarNumber ?? this.aadhaarNumber,
-      aadhaarFrontUrl:
-      aadhaarFrontUrl ?? this.aadhaarFrontUrl,
-      aadhaarBackUrl:
-      aadhaarBackUrl ?? this.aadhaarBackUrl,
-      selfieUrl: selfieUrl ?? this.selfieUrl,
-      address: address ?? this.address,
-      city: city ?? this.city,
-      state: state ?? this.state,
-      pincode: pincode ?? this.pincode,
-      bankName: bankName ?? this.bankName,
-      accountHolderName: accountHolderName ?? this.accountHolderName,
-      accountNumber: accountNumber ?? this.accountNumber,
-      ifscCode: ifscCode ?? this.ifscCode,
-      accountType: accountType ?? this.accountType,
-      nomineeName: nomineeName ?? this.nomineeName,
-      nomineeDob: nomineeDob ?? this.nomineeDob,
-      nomineeRelation: nomineeRelation ?? this.nomineeRelation,
-      signatureUrl: signatureUrl ?? this.signatureUrl,
-      mpin: mpin ?? this.mpin,
-
-      emailVerified: emailVerified ?? this.emailVerified,
-      phoneVerified: phoneVerified ?? this.phoneVerified,
-      kycVerified: kycVerified ?? this.kycVerified,
-
-      accountStatus: accountStatus ?? this.accountStatus,
-
-      fcmToken: fcmToken ?? this.fcmToken,
-      deviceType: deviceType ?? this.deviceType,
-
       referralCode: referralCode ?? this.referralCode,
       referredBy: referredBy ?? this.referredBy,
-
+      emailVerified: emailVerified ?? this.emailVerified,
+      phoneVerified: phoneVerified ?? this.phoneVerified,
     );
+  }
+
+  // ============================================================
+  // TO MAP
+  // ============================================================
+
+  Map<String, dynamic> toMap() {
+    return {
+      'fullName': fullName.trim(),
+      'email': email.trim().toLowerCase(),
+      'phone': phone.trim(),
+      'username': username.trim().toLowerCase(),
+      'countryCode': countryCode.trim(),
+      'profileImage': profileImage.trim(),
+      'referralCode': referralCode.trim().toUpperCase(),
+      'referredBy': referredBy.trim(),
+      'emailVerified': emailVerified,
+      'phoneVerified': phoneVerified,
+    };
+  }
+
+  // ============================================================
+  // FROM MAP
+  // ============================================================
+
+  factory SignupModel.fromMap(Map<String, dynamic> map) {
+    return SignupModel(
+      fullName: map['fullName']?.toString() ?? '',
+      email: map['email']?.toString() ?? '',
+      phone: map['phone']?.toString() ?? '',
+      username: map['username']?.toString() ?? '',
+      countryCode: map['countryCode']?.toString() ?? '+91',
+      profileImage: map['profileImage']?.toString() ?? '',
+      referralCode: map['referralCode']?.toString() ?? '',
+      referredBy: map['referredBy']?.toString() ?? '',
+      emailVerified: _parseBool(map['emailVerified']),
+      phoneVerified: _parseBool(map['phoneVerified']),
+    );
+  }
+
+  // ============================================================
+  // TO JSON
+  // ============================================================
+
+  Map<String, dynamic> toJson() {
+    return toMap();
+  }
+
+  // ============================================================
+  // FROM JSON
+  // ============================================================
+
+  factory SignupModel.fromJson(
+      Map<String, dynamic> json,
+      ) {
+    return SignupModel.fromMap(json);
+  }
+
+  // ============================================================
+  // JSON STRING
+  // ============================================================
+
+  String toJsonString() {
+    return jsonEncode(toJson());
+  }
+
+  factory SignupModel.fromJsonString(
+      String value,
+      ) {
+    if (value.trim().isEmpty) {
+      throw const FormatException(
+        'SignupModel JSON cannot be empty.',
+      );
+    }
+
+    final dynamic decoded;
+
+    try {
+      decoded = jsonDecode(value);
+    } catch (_) {
+      throw const FormatException(
+        'Invalid SignupModel JSON.',
+      );
+    }
+
+    if (decoded is! Map) {
+      throw const FormatException(
+        'Invalid SignupModel JSON.',
+      );
+    }
+
+    return SignupModel.fromJson(
+      Map<String, dynamic>.from(decoded),
+    );
+  }
+
+  // ============================================================
+  // VALIDATION
+  // ============================================================
+
+  bool get hasName {
+    return fullName.trim().isNotEmpty;
+  }
+
+  bool get hasEmail {
+    return email.trim().isNotEmpty;
+  }
+
+  bool get hasPhone {
+    return phone.trim().isNotEmpty;
+  }
+
+  bool get hasUsername {
+    return username.trim().isNotEmpty;
+  }
+
+  bool get hasProfileImage {
+    return profileImage.trim().isNotEmpty;
+  }
+
+  bool get hasReferralCode {
+    return referralCode.trim().isNotEmpty;
+  }
+
+  bool get isEmailVerified {
+    return emailVerified;
+  }
+
+  bool get isPhoneVerified {
+    return phoneVerified;
+  }
+
+  // ============================================================
+  // REQUIRED ACCOUNT COMPLETION
+  // ============================================================
+
+  bool get isComplete {
+    return hasName &&
+        hasEmail &&
+        hasPhone &&
+        hasUsername &&
+        emailVerified &&
+        phoneVerified;
+  }
+
+  // ============================================================
+  // REFERRAL CODE NORMALIZATION
+  // ============================================================
+
+  void normalizeReferralCode() {
+    referralCode = referralCode.trim().toUpperCase();
+  }
+
+  // ============================================================
+  // USERNAME NORMALIZATION
+  // ============================================================
+
+  void normalizeUsername() {
+    username = username.trim().toLowerCase();
+  }
+
+  // ============================================================
+  // EMAIL NORMALIZATION
+  // ============================================================
+
+  void normalizeEmail() {
+    email = email.trim().toLowerCase();
+  }
+
+  // ============================================================
+  // NORMALIZE MODEL
+  // ============================================================
+
+  void normalize() {
+    fullName = fullName.trim();
+    email = email.trim().toLowerCase();
+    phone = phone.trim();
+    username = username.trim().toLowerCase();
+    countryCode = countryCode.trim();
+    profileImage = profileImage.trim();
+    referralCode = referralCode.trim().toUpperCase();
+    referredBy = referredBy.trim();
+  }
+
+  // ============================================================
+  // COPY NORMALIZED MODEL
+  // ============================================================
+
+  SignupModel normalizedCopy() {
+    return copyWith(
+      fullName: fullName.trim(),
+      email: email.trim().toLowerCase(),
+      phone: phone.trim(),
+      username: username.trim().toLowerCase(),
+      countryCode: countryCode.trim(),
+      profileImage: profileImage.trim(),
+      referralCode: referralCode.trim().toUpperCase(),
+      referredBy: referredBy.trim(),
+      emailVerified: emailVerified,
+      phoneVerified: phoneVerified,
+    );
+  }
+
+  // ============================================================
+  // CLEAR SENSITIVE / TEMPORARY DATA
+  // ============================================================
+
+  void clearReferralData() {
+    referralCode = '';
+    referredBy = '';
+  }
+
+  // ============================================================
+  // BOOLEAN PARSER
+  // ============================================================
+
+  static bool _parseBool(
+      dynamic value,
+      ) {
+    if (value is bool) {
+      return value;
+    }
+
+    if (value is String) {
+      final String normalized = value.trim().toLowerCase();
+
+      if (normalized == 'true' ||
+          normalized == '1' ||
+          normalized == 'yes') {
+        return true;
+      }
+
+      if (normalized == 'false' ||
+          normalized == '0' ||
+          normalized == 'no') {
+        return false;
+      }
+    }
+
+    if (value is num) {
+      return value != 0;
+    }
+
+    return false;
+  }
+
+  // ============================================================
+  // DEBUG
+  // ============================================================
+
+  @override
+  String toString() {
+    return 'SignupModel('
+        'fullName: $fullName, '
+        'email: $email, '
+        'phone: $phone, '
+        'username: $username, '
+        'countryCode: $countryCode, '
+        'profileImage: $profileImage, '
+        'referralCode: $referralCode, '
+        'referredBy: $referredBy, '
+        'emailVerified: $emailVerified, '
+        'phoneVerified: $phoneVerified'
+        ')';
   }
 }

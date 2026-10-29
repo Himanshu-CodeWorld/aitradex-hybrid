@@ -1,125 +1,103 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import '../core/api/api_constants.dart';
-
+/// AiTradeX image upload service.
+///
+/// Profile images are uploaded to the AiTradeX backend and the backend
+/// returns a permanent HTTPS URL. That URL is then stored in MongoDB.
 class UploadService {
   UploadService._();
 
-  /// Upload Image
-  static Future<String> uploadImage({
-    required File image,
-    required String folder,
+  static const String _baseUrl =
+      'https://aitradex-api.onrender.com/api';
+
+  static Future<String> uploadProfile({
+    required File file,
+    required String idToken,
   }) async {
-    try {
-      final uri = Uri.parse("${ApiConstants.baseUrl}/upload/image");
-
-      final request = http.MultipartRequest(
-        "POST",
-        uri,
-      );
-
-      request.fields["folder"] = folder;
-
-      request.files.add(
-        await http.MultipartFile.fromPath(
-          "image",
-          image.path,
-        ),
-      );
-
-      print("========== IMAGE UPLOAD ==========");
-      print("URL : $uri");
-      print("FILE : ${image.path}");
-      print("FOLDER : $folder");
-
-      final streamedResponse = await request.send();
-
-      final response = await http.Response.fromStream(
-        streamedResponse,
-      );
-
-      print("========== IMAGE RESPONSE ==========");
-      print("STATUS : ${response.statusCode}");
-      print("BODY : ${response.body}");
-
-      final Map<String, dynamic> data =
-      jsonDecode(response.body);
-
-      if (response.statusCode == 200 &&
-          data["success"] == true) {
-        return data["url"];
-      }
-
-      throw Exception(
-        data["message"] ?? "Image upload failed.",
-      );
-    } catch (e) {
-      print("========== IMAGE UPLOAD ERROR ==========");
-      print(e);
-      rethrow;
+    if (!await file.exists()) {
+      throw Exception('Profile image file does not exist.');
     }
-  }
 
-  /// Profile
-  static Future<String> uploadProfile(
-      File image,
-      ) {
-    return uploadImage(
-      image: image,
-      folder: "profile",
-    );
-  }
+    final int size = await file.length();
 
-  /// PAN
-  static Future<String> uploadPan(
-      File image,
-      ) {
-    return uploadImage(
-      image: image,
-      folder: "pan",
-    );
-  }
+    if (size <= 0) {
+      throw Exception('Profile image file is empty.');
+    }
 
-  /// Aadhaar Front
-  static Future<String> uploadAadhaarFront(
-      File image,
-      ) {
-    return uploadImage(
-      image: image,
-      folder: "aadhaar-front",
-    );
-  }
+    final Uri uri = Uri.parse('$_baseUrl/upload/profile');
 
-  /// Aadhaar Back
-  static Future<String> uploadAadhaarBack(
-      File image,
-      ) {
-    return uploadImage(
-      image: image,
-      folder: "aadhaar-back",
-    );
-  }
+    final request = http.MultipartRequest('POST', uri);
 
-  /// Selfie
-  static Future<String> uploadSelfie(
-      File image,
-      ) {
-    return uploadImage(
-      image: image,
-      folder: "selfie",
-    );
-  }
+    request.headers.addAll({
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${idToken.trim()}',
+    });
 
-  /// Signature
-  static Future<String> uploadSignature(
-      File image,
-      ) {
-    return uploadImage(
-      image: image,
-      folder: "signature",
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'image',
+        file.path,
+      ),
     );
+
+    final response = await request.send().timeout(
+      const Duration(seconds: 60),
+    );
+
+    final String body =
+    await response.stream.bytesToString();
+
+    debugPrint(
+      'PROFILE UPLOAD STATUS: ${response.statusCode}',
+    );
+    debugPrint(
+      'PROFILE UPLOAD BODY: $body',
+    );
+
+    dynamic decoded;
+
+    try {
+      decoded = jsonDecode(body);
+    } catch (_) {
+      throw Exception(
+        'Invalid response from profile image upload server.',
+      );
+    }
+
+    if (response.statusCode < 200 ||
+        response.statusCode >= 300) {
+      throw Exception(
+        decoded is Map<String, dynamic>
+            ? decoded['message']?.toString() ??
+            'Profile image upload failed.'
+            : 'Profile image upload failed.',
+      );
+    }
+
+    if (decoded is! Map<String, dynamic> ||
+        decoded['success'] != true) {
+      throw Exception(
+        decoded is Map<String, dynamic>
+            ? decoded['message']?.toString() ??
+            'Profile image upload failed.'
+            : 'Profile image upload failed.',
+      );
+    }
+
+    final String url =
+        decoded['url']?.toString().trim() ?? '';
+
+    if (!url.startsWith('http://') &&
+        !url.startsWith('https://')) {
+      throw Exception(
+        'Profile image server returned an invalid URL.',
+      );
+    }
+
+    return url;
   }
 }

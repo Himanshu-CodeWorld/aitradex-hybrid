@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +15,7 @@ class NamePage extends StatefulWidget {
 }
 
 class _NamePageState extends State<NamePage> {
-  final SignupController controller = Get.find();
+  late final SignupController controller;
 
   bool isButtonEnabled = false;
 
@@ -24,12 +23,36 @@ class _NamePageState extends State<NamePage> {
   void initState() {
     super.initState();
 
-    controller.fullNameController.addListener(() {
-      setState(() {
-        isButtonEnabled =
-            controller.fullNameController.text.trim().isNotEmpty;
-      });
+    controller = Get.find<SignupController>();
+
+    controller.nameController.addListener(_onNameChanged);
+
+    _onNameChanged();
+  }
+
+  void _onNameChanged() {
+    if (!mounted) return;
+
+    setState(() {
+      isButtonEnabled =
+          controller.nameController.text.trim().length >= 2;
     });
+  }
+
+  @override
+  void dispose() {
+    controller.nameController.removeListener(_onNameChanged);
+    super.dispose();
+  }
+
+  Future<void> _continue() async {
+    FocusScope.of(context).unfocus();
+
+    final success = await controller.submitName();
+
+    if (!success || !mounted) return;
+
+    await controller.nextPage();
   }
 
   @override
@@ -37,7 +60,9 @@ class _NamePageState extends State<NamePage> {
     return SafeArea(
       child: Column(
         children: [
-          /// Header
+          // ----------------------------------------------------------
+          // Header
+          // ----------------------------------------------------------
           SignupProgressHeader(
             progress: 0.05,
             onBack: () {
@@ -49,6 +74,9 @@ class _NamePageState extends State<NamePage> {
             },
           ),
 
+          // ----------------------------------------------------------
+          // Content
+          // ----------------------------------------------------------
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -89,9 +117,10 @@ class _NamePageState extends State<NamePage> {
                   const SizedBox(height: 12),
 
                   TextField(
-                    controller: controller.fullNameController,
+                    controller: controller.nameController,
                     autofocus: true,
                     textCapitalization: TextCapitalization.words,
+                    textInputAction: TextInputAction.done,
                     style: GoogleFonts.poppins(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -116,6 +145,11 @@ class _NamePageState extends State<NamePage> {
                       ),
                       border: const UnderlineInputBorder(),
                     ),
+                    onSubmitted: (_) {
+                      if (isButtonEnabled) {
+                        _continue();
+                      }
+                    },
                   ),
 
                   const Spacer(),
@@ -124,20 +158,15 @@ class _NamePageState extends State<NamePage> {
             ),
           ),
 
+          // ----------------------------------------------------------
+          // Continue Button
+          // ----------------------------------------------------------
           Padding(
             padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
             child: PrimaryButton(
               text: "Continue",
               enabled: isButtonEnabled,
-              onPressed: () async {
-                FocusScope.of(context).unfocus();
-
-                // Save latest values into SignupModel
-                await controller.saveCurrentDraft();
-
-                // Next Page
-                await controller.nextPage();
-              },
+              onPressed: isButtonEnabled ? _continue : null,
             ),
           ),
         ],

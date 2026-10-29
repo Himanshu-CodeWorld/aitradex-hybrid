@@ -12,25 +12,39 @@ class ConfirmButton extends GetView<OtpController> {
   Widget build(BuildContext context) {
     return Obx(
           () => PrimaryButton(
-        text: controller.isLoading.value ? "Verifying..." : "Confirm OTP",
-        enabled: !controller.isLoading.value && !controller.isVerified.value,
+        text: controller.isLoading.value
+            ? "Verifying..."
+            : "Confirm OTP",
+
+        enabled:
+        !controller.isLoading.value &&
+            !controller.isVerified.value,
+
         onPressed: () async {
-          debugPrint("======== VERIFY BUTTON ========");
+          debugPrint(
+            "======== VERIFY BUTTON ========",
+          );
 
-          if (controller.isLoading.value) return;
-
-          final success = await controller.verifyOtp();
-
-          debugPrint("VERIFY RESULT = $success");
-
-          if (success) {
-            debugPrint("CLOSING OTP SCREEN");
-
-            Get.back(result: true);
-
-            debugPrint("OTP SCREEN CLOSED");
+          if (controller.isLoading.value) {
+            debugPrint(
+              "Verify ignored: already loading",
+            );
+            return;
           }
-        }
+
+          if (controller.isVerified.value) {
+            debugPrint(
+              "Verify ignored: already verified",
+            );
+            return;
+          }
+
+          await controller.verifyOtp();
+
+          debugPrint(
+            "======== VERIFY BUTTON FINISHED ========",
+          );
+        },
       ),
     );
   }

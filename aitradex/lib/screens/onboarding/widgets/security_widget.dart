@@ -84,7 +84,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color(0xff23C98D).withOpacity(.05),
+                    color: const Color(0xff23C98D).withValues(alpha: .05),
                   ),
                 ),
               ),
@@ -95,7 +95,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color(0xff23C98D).withOpacity(.03),
+                    color: const Color(0xff23C98D).withValues(alpha: .03),
                   ),
                 ),
               ),
@@ -120,7 +120,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: const Color(0xff23C98D)
-                            .withOpacity(.20),
+                            .withValues(alpha: .20),
                         width: 2,
                       ),
                     ),
@@ -237,7 +237,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: const Color(0xff23C98D)
-                                .withOpacity(.12),
+                                .withValues(alpha: .12),
                             width: 2,
                           ),
                         ),
@@ -322,7 +322,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: const Color(0xff23C98D)
-                            .withOpacity(.20),
+                            .withValues(alpha: .20),
                         width: 2,
                       ),
                     ),
@@ -370,7 +370,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
                   width: 170,
                   height: 20,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.05),
+                    color: Colors.black.withValues(alpha: .05),
                     borderRadius: BorderRadius.circular(50),
                   ),
                 ),
@@ -394,7 +394,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
         boxShadow: [
 
           BoxShadow(
-            color: Colors.black.withOpacity(.15),
+            color: Colors.black.withValues(alpha: .15),
             blurRadius: 25,
           ),
         ],
@@ -464,7 +464,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
 
           BoxShadow(
             color: const Color(0xff23C98D)
-                .withOpacity(.35),
+                .withValues(alpha: .35),
             blurRadius: 20,
           ),
         ],
@@ -502,7 +502,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
           boxShadow: [
 
             BoxShadow(
-              color: Colors.black.withOpacity(.08),
+              color: Colors.black.withValues(alpha: .08),
               blurRadius: 15,
             ),
           ],
@@ -525,7 +525,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 18,
           ),
         ],
@@ -549,7 +549,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 18,
           ),
         ],
@@ -587,7 +587,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 10,
           ),
         ],
@@ -609,7 +609,7 @@ class _SecurityWidgetState extends State<SecurityWidget>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 15,
           ),
         ],

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:aitradex/screens/auth/signup/signup_binding.dart';
+import '../auth/google/google_auth_controller.dart';
 
 import '../../models/onboarding_model.dart';
 import 'onboarding_page.dart';
@@ -28,6 +29,8 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
 
+  late final GoogleAuthController googleAuthController;
+
   int currentPage = 0;
 
   late final List<OnboardingModel> pages;
@@ -35,6 +38,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void initState() {
     super.initState();
+
+    googleAuthController =
+    Get.isRegistered<GoogleAuthController>()
+        ? Get.find<GoogleAuthController>()
+        : Get.put(GoogleAuthController());
 
     pages = [
 
@@ -180,36 +188,49 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             // GOOGLE BUTTON
             //-------------------------------------------------
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: SizedBox(
-                height: 52,
-                width: double.infinity,
-
-                child: OutlinedButton.icon(
-                  onPressed: () {},
-
-                  icon: Image.asset(
-                    "assets/logos/google.png",
-                    width: 24,
-                    height: 24,
-                    fit: BoxFit.contain,
-                  ),
-
-                  label: Text(
-                    "Continue with Google",
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
+            Obx(
+                  () => Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                ),
+                child: SizedBox(
+                  height: 52,
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed:
+                    googleAuthController.isLoading.value
+                        ? null
+                        : googleAuthController.signInWithGoogle,
+                    icon: googleAuthController.isLoading.value
+                        ? const SizedBox(
+                      width: 22,
+                      height: 22,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    )
+                        : Image.asset(
+                      'assets/logos/google.png',
+                      width: 24,
+                      height: 24,
+                      fit: BoxFit.contain,
                     ),
-                  ),
-
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
+                    label: Text(
+                      googleAuthController.isLoading.value
+                          ? 'Signing in...'
+                          : 'Continue with Google',
+                      style: GoogleFonts.poppins(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                    side: BorderSide(
-                      color: Colors.grey.shade300,
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      side: BorderSide(
+                        color: Colors.grey.shade300,
+                      ),
                     ),
                   ),
                 ),

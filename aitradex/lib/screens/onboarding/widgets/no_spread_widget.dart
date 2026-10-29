@@ -96,7 +96,7 @@ class _NoSpreadWidgetState
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: const Color(0xff23C98D).withOpacity(.10),
+                          color: const Color(0xff23C98D).withValues(alpha: .10),
                           width: 2,
                         ),
                       ),
@@ -111,7 +111,7 @@ class _NoSpreadWidgetState
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color(0xff23C98D).withOpacity(.05),
+                    color: const Color(0xff23C98D).withValues(alpha: .05),
                   ),
                 ),
               ),
@@ -122,7 +122,7 @@ class _NoSpreadWidgetState
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color(0xff23C98D).withOpacity(.03),
+                    color: const Color(0xff23C98D).withValues(alpha: .03),
                   ),
                 ),
               ),
@@ -270,7 +270,7 @@ class _NoSpreadWidgetState
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(.08),
+                            color: Colors.black.withValues(alpha: .08),
                             blurRadius: 10,
                           ),
                         ],
@@ -369,7 +369,7 @@ class _NoSpreadWidgetState
                   width: 170,
                   height: 18,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.05),
+                    color: Colors.black.withValues(alpha: .05),
                     borderRadius: BorderRadius.circular(50),
                   ),
                 ),
@@ -444,12 +444,12 @@ class _NoSpreadWidgetState
 
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff23C98D).withOpacity(.20),
+            color: const Color(0xff23C98D).withValues(alpha: .20),
             blurRadius: 22,
             spreadRadius: 2,
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(.12),
+            color: Colors.black.withValues(alpha: .12),
             blurRadius: 18,
           ),
         ],
@@ -506,7 +506,7 @@ class _NoSpreadWidgetState
         boxShadow: [
 
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 20,
           ),
         ],
@@ -541,7 +541,7 @@ class _NoSpreadWidgetState
         boxShadow: [
 
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 12,
           ),
         ],
@@ -568,7 +568,7 @@ class _NoSpreadWidgetState
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 18,
           ),
         ],
@@ -625,7 +625,7 @@ class _NoSpreadWidgetState
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff23C98D).withOpacity(.30),
+            color: const Color(0xff23C98D).withValues(alpha: .30),
             blurRadius: 15,
           ),
         ],
@@ -665,7 +665,7 @@ class _NoSpreadWidgetState
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 12,
           ),
         ],
@@ -705,7 +705,7 @@ class _NoSpreadWidgetState
           boxShadow: [
 
             BoxShadow(
-              color: Colors.black.withOpacity(.08),
+              color: Colors.black.withValues(alpha: .08),
               blurRadius: 10,
             ),
           ],

@@ -84,7 +84,7 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: const Color(0xff23C98D).withOpacity(.15),
+                              color: const Color(0xff23C98D).withValues(alpha: .15),
                               width: 2,
                             ),
                           ),
@@ -235,7 +235,7 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
                           width: 190,
                           height: 20,
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(.05),
+                            color: Colors.black.withValues(alpha: .05),
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -272,13 +272,13 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
         boxShadow: [
 
           BoxShadow(
-            color: const Color(0xff23C98D).withOpacity(.40),
+            color: const Color(0xff23C98D).withValues(alpha: .40),
             blurRadius: 35,
             spreadRadius: 4,
           ),
 
           BoxShadow(
-            color: Colors.white.withOpacity(.20),
+            color: Colors.white.withValues(alpha: .20),
             blurRadius: 20,
           ),
         ],
@@ -348,7 +348,7 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 12,
           ),
         ],
@@ -369,7 +369,7 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 16,
           ),
         ],
@@ -419,7 +419,7 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 16,
           ),
         ],
@@ -472,7 +472,7 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(.08),
+              color: Colors.black.withValues(alpha: .08),
               blurRadius: 12,
             ),
           ],
@@ -494,7 +494,7 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
         color: const Color(0xff23C98D),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff23C98D).withOpacity(.35),
+            color: const Color(0xff23C98D).withValues(alpha: .35),
             blurRadius: 10,
           ),
         ],
@@ -525,7 +525,7 @@ class _RealSharesWidgetState extends State<RealSharesWidget>
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.08),
+            color: Colors.black.withValues(alpha: .08),
             blurRadius: 12,
           ),
         ],
@@ -588,7 +588,7 @@ class GlobeGridPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
 
     final paint = Paint()
-      ..color = Colors.white.withOpacity(.35)
+      ..color = Colors.white.withValues(alpha: .35)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.2;
 
@@ -625,7 +625,7 @@ class ConnectionPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = const Color(0xff23C98D).withOpacity(.18)
+      ..color = const Color(0xff23C98D).withValues(alpha: .18)
       ..strokeWidth = 1.5;
 
     canvas.drawLine(

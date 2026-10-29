@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "418085831140",
+    "project_id": "aitradex-hybrid",
+    "storage_bucket": "aitradex-hybrid.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418085831140:android:47d8760532c09cc1f5c7f1",
+        "android_client_info": {
+          "package_name": "com.example.aitradex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418085831140-q7nqgkv3r4j9u7e9nrud30p4nq908d08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aitradex",
+            "certificate_hash": "6133d1516d765b88bf224d56564776d5b8fa6c3d"
+          }
+        },
+        {
+          "client_id": "418085831140-vljcc8v8pnbe5ohgo5v2gvq4u0g55s0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPiPeo7yB-rnVe_mQYzeG2UF-QayM9Goc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418085831140-vljcc8v8pnbe5ohgo5v2gvq4u0g55s0c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "418085831140-3gccg57dv3lg288b8s7kqj4r6fkrrunp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aitradex"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
